@@ -1,5 +1,9 @@
 <html>
     <body>
+
+    <%= button_to "Create a new Gossip", "gossips/new", :id => "open-contacts-dialog-btn",
+      :class => "btn btn-primary btn-lg", :method => :get %>
+      
         <div class="container">
             <div class="row">
                 <% @gossips.each do |gossip| %>
