@@ -1,0 +1,39 @@
+<html>
+  <head>
+    <title>Potin n°<%= @gossip.id %></title>
+  </head>
+  <body>
+      <!--POTIN -->
+    <div class="container">
+      <h1>PAGE POTIN</p>
+      <h2>Voici la page du potin n°<%=@gossip.id %></h2>
+      <div class="bd-example">
+        <dl>
+            <dt>Son auteur</dt>
+                <dd><%= link_to "#{@gossip.user.first_name}", user_id_path(@gossip.user.id) %> </dd>
+            <dt>Contenu du potin</dt>
+                <dd><%= @gossip.content%></dd>
+            <dt>Date de création</dt> 
+                <dd><%= @gossip.created_at%></dd>
+        </dl>
+      </div>
+      <table class="table table-striped">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">Commentaires</th> 
+            <th scope="col">Auteur</th> 
+          </tr>
+        </thead>
+
+        <tbody>
+          <% @gossip.comments.each do |comment| %>
+            <tr>
+              <td><%= comment.content %></td>
+              <td><%= link_to "#{comment.user.first_name}", user_id_path(comment.user.id) %></td>
+            </tr> 
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </body>
+</html>

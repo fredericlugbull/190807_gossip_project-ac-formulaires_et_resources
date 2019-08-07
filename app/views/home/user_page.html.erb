@@ -1,0 +1,57 @@
+<html>
+    <head>
+        <title>Page Auteur</title>
+    </head>
+    <body>
+        <!--AUTEUR-->
+                <%= @user.first_name%> <%= @user.last_name%>
+
+                <dl>
+                    <dt>Age</dt>
+                    <dd><%= @user.age%></dd>
+                    <dt>Email</dt>
+                    <dd><%= @user.email%></dd>
+                    <dt>Description</dt>
+                    <dd><%= @user.description%></dd>
+                    <dt>Ville</dt>
+                    <dd><%= @user.city.name%></dd>
+               </dl> 
+           
+            <tr>
+                <th scope="col">Id</th> 
+                <th scope="col">Gossips</th>
+                <th scope="col">Lien</th> 
+            </tr>
+            <% @user.gossips.each do |gossip| %>
+                <tr>
+                <td><%= gossip.id %></td>
+                <td><%=gossip.content %></td>
+                <td><%= link_to "Gossip", gossip_id_path(gossip.id) %></td>
+                </tr> 
+            <% end %>
+        </table>
+
+    
+            <tr>
+                <th scope="col">Id</th> 
+                <th scope="col">Commentaires</th>
+                <th scope="col">Lien gossip</th> 
+            </tr>
+           
+            <% @user.comments.each do |comment| %>
+                <tr>
+                <td><%= comment.id %></td>
+                <td><%= comment.content %></td>
+                <% commentable = comment
+                gossip = commentable.commentable_type
+                while gossip != 'Gossip'
+                    commentable = Comment.all.find(commentable.commentable_id)
+                    gossip = commentable.commentable_type
+                end 
+                %>
+                <td><%= link_to "#{gossip}", gossip_id_path(commentable.commentable_id) %></td>
+                </tr> 
+            <% end %>
+         
+    </body>
+</html>

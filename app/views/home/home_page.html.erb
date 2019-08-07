@@ -1,0 +1,22 @@
+<html>
+    <body>
+        <div class="container">
+            <div class="row">
+                <% @gossips.each do |gossip| %>
+                    <div class="col-lg-3 col-md-6 col-xs-12 between_cards">
+                        <div class="box-part text-center cards-gossip">
+                            <div class="card text-white bg-dark">
+                                <div class="card-body card-home">
+                                    <h5 class="card-title"><%= gossip.title %></h5>
+                                    <h6 class="card-subtitle mb-2 text-muted">Auteur : <%= link_to "#{gossip.user.first_name}", user_id_path(gossip.user.id) %> </h6>
+                                    <p class="card-text"><%= gossip.comments.length %> commentaires</p>
+                                    <div class='btn btn-primary'><%= link_to "Le potin", gossip_id_path(gossip.id) %></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                <% end %>	
+            </div>		
+        </div>
+    </body>
+</html>
