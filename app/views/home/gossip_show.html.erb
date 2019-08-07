@@ -10,7 +10,7 @@
       <div class="bd-example">
         <dl>
             <dt>Son auteur</dt>
-                <dd><%= link_to "#{@gossip.user.first_name}", user_id_path(@gossip.user.id) %> </dd>
+                <dd><%= link_to "#{@gossip.user.first_name}", user_path(@gossip.user.id) %> </dd>
             <dt>Contenu du potin</dt>
                 <dd><%= @gossip.content%></dd>
             <dt>Date de création</dt> 
@@ -29,7 +29,7 @@
           <% @gossip.comments.each do |comment| %>
             <tr>
               <td><%= comment.content %></td>
-              <td><%= link_to "#{comment.user.first_name}", user_id_path(comment.user.id) %></td>
+              <td><%= link_to "#{comment.user.first_name}", user_path(comment.user.id) %></td>
             </tr> 
           <% end %>
         </tbody>

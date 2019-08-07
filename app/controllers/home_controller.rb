@@ -11,10 +11,6 @@ class HomeController < ApplicationController
     @first_name = params[:first_name]
   end
 
-  def user_page
-    @user = User.find(params[:id])
-  end
-
   def contact_show
   end
 

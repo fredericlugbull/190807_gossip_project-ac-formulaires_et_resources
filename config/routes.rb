@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   resources :gossips
-  get '/user/:id', to: 'home#user_page', as: :user_id
+  resources :user
+  resources :city
   get '/gossip/:id', to: 'home#gossip_show', as: :gossip_id
   get '/home', to: 'home#home_page'
   get '/welcome/:first_name', to: 'home#landing_page'
