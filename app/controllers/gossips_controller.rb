@@ -10,15 +10,16 @@ class GossipsController < ApplicationController
   end
 
   def create
-    @gossip = Gossip.new() # avec xxx qui sont les données obtenues à partir du formulaire
-    redirect_to gossips_path # si ça marche, il redirige vers la page d'index du site
+    @gossip = Gossip.new(title: params[:title], content: params[:content], :user => User.all.sample) 
 
     if @gossip.save # essaie de sauvegarder en base @gossip
-      # si ça marche, il redirige vers la page d'index du site
+      flash[:success] = 'The Gossip was successfully created'
+      redirect_to gossips_path # si ça marche, il redirige vers la page d'index du site
     else
-      # sinon, il render la view new (qui est celle sur laquelle on est déjà)
+      render :new  # sinon, il render la view new (qui est celle sur laquelle on est déjà)
     end
   end
+  
   
   def show
     @gossip = Gossip.find(params[:id])

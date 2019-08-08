@@ -1,10 +1,20 @@
 <html>
 
+  <% if @gossip.errors.any? %>
+  <div class="alert alert-danger" role="alert">
+    <p>We couldn't create the Gossip because :</p>
+    <ul>
+      <% @gossip.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+  <% end %>
 
   <body>
     <!-- ... -->
 
-    <%= form_tag url_for(action: 'create'), method: "post" do %>
+    <%= form_tag url_for(action: 'create'), method: "post" do %>    
 
       <%= label_tag 'Title' %>
       <%= text_field_tag 'title' %>
